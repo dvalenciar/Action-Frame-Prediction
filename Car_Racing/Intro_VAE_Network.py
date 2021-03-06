@@ -169,7 +169,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
                                latent_size=32, num_epochs=100, save_period=100):
 
     #  ------------------- load data ------------------------#
-    img_input, img_target, vector_actions = load_data_generator(batch_size=batch_size, mode='test')
+    img_input, img_target, vector_actions = load_data_generator(batch_size=batch_size, mode='train')
 
     # --------------Hyper and helpers parameters --------------#
     beta = 1.0
