@@ -280,7 +280,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
             print(info)
 
             # ========= save some images =============
-            if epoch % save_period == 0 and idx == len(img_input)-1:
+            if epoch % save_period == 0 and idx == 2:
                 print("Saving Image Sample")
                 save_image(
                     torch.cat([img_t[0:16], xr[0:16], xp[0:16]], dim=0).data.cpu(),
@@ -341,7 +341,7 @@ if __name__ == '__main__':
     NUM_EPOCHS  = 5000
     BATCH_SIZE  = 32
     LATENT_SIZE = 32
-    SAVE_PERIOD = 500  # When to save a checkpoint
+    SAVE_PERIOD = 100  # When to save a checkpoint
 
     intro_vae_frame_prediction(device=device,
                                batch_size=BATCH_SIZE,

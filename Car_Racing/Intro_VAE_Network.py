@@ -174,7 +174,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
     # --------------Hyper and helpers parameters --------------#
     beta = 1.0
     alpha = 0.25
-    marginal = 11.0
+    marginal = 1.90
 
     loss_kl_z_values  = []
     loss_kl_zr_values = []
@@ -191,8 +191,8 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
     # --------------build  and configure model --------------#
     model = IntroVAE(z_dim=latent_size).to(device)
-    optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00002)
-    optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00002)
+    optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00005)
+    optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00005)
 
     #  ------------------- train_model ----------------------#
     for epoch in range(1, num_epochs + 1):
@@ -276,7 +276,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
             print(info)
 
             # ========= save some images =============
-            if epoch % save_period == 0 and idx == len(img_input)-1:
+            if epoch % save_period == 0 and idx == 7:
                 print("Saving Image Sample")
                 save_image(
                     torch.cat([img_t[0:16], xr[0:16], xp[0:16]], dim=0).data.cpu(),
@@ -334,10 +334,10 @@ if __name__ == '__main__':
         print("Running on CPU")
 
     # ========== Global Parameters ==================== #
-    NUM_EPOCHS  = 5
-    BATCH_SIZE  = 128
+    NUM_EPOCHS  = 5000
+    BATCH_SIZE  = 32
     LATENT_SIZE = 32
-    SAVE_PERIOD = 2  # When to save a checkpoint
+    SAVE_PERIOD = 100  # When to save a checkpoint
 
     intro_vae_frame_prediction(device=device,
                                batch_size=BATCH_SIZE,
