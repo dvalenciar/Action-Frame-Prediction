@@ -191,8 +191,8 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
     # --------------build  and configure model --------------#
     model = IntroVAE(z_dim=latent_size).to(device)
-    optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00005)
-    optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00005)
+    optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00004)
+    optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00004)
 
     #  ------------------- train_model ----------------------#
     for epoch in range(1, num_epochs + 1):
@@ -268,6 +268,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
             # ========= show info per bach ==================
             if torch.isnan(encoder_loss) or torch.isnan(decoder_loss):
+                torch.save(model.state_dict(), f'./{model_dir}/intro_vae_backup_NAN_{num_epochs}_epochs')
                 raise SystemError("NaN values")
 
             info  = f" Epoch:[{epoch}/{num_epochs}], Batch:[{idx}/{len(img_input)}],"
@@ -334,7 +335,7 @@ if __name__ == '__main__':
         print("Running on CPU")
 
     # ========== Global Parameters ==================== #
-    NUM_EPOCHS  = 5000
+    NUM_EPOCHS  = 3000
     BATCH_SIZE  = 32
     LATENT_SIZE = 32
     SAVE_PERIOD = 100  # When to save a checkpoint
