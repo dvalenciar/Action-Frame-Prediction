@@ -272,6 +272,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
             # ========= show info per bach ==================
             if torch.isnan(encoder_loss) or torch.isnan(decoder_loss):
+                torch.save(model.state_dict(), f'./{model_dir}/model_intro_vae_backup_NaN_{num_epochs}_epochs')
                 raise SystemError("NaN values")
 
             info  = f" Epoch:[{epoch}/{num_epochs}], Batch:[{idx}/{len(img_input)}],"
