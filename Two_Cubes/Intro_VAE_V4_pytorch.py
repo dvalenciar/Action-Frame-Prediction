@@ -176,6 +176,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
     img_input, img_target, vector_actions = load_data_generator(batch_size=batch_size, mode='train')
 
     # --------------Hyper and helpers parameters --------------#
+    start_epoch = 1
     beta = 1.0
     alpha = 0.25
     marginal = 11.0
@@ -198,8 +199,28 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
     optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00002)
     optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00002)
 
+    #-------------Load checkpoint----------------------------#
+    load_check = False
+    if load_check:
+        print("loading checkpoint")
+        checkpoint = torch.load("./Model_Saved/checkpoint.pt")
+
+        model.load_state_dict(checkpoint['model_state_dict'])
+        optimizer_e.load_state_dict(checkpoint['optimizer_enc_state_dict'])
+        optimizer_d.load_state_dict(checkpoint['optimizer_gen_state_dict'])
+
+        recovery_epoch   = checkpoint['epoch']
+        loss_kl_z_values = checkpoint['Kl_z_loss']
+        loss_kl_zr_values = checkpoint['Kl_zr_loss']
+        loss_kl_zp_values = checkpoint['Kl_zp_loss']
+        loss_rec_values = checkpoint['rec_loss']
+        loss_enc_values = checkpoint['enc_loss']
+        loss_dec_values = checkpoint['dec_loss']
+        start_epoch = recovery_epoch + 1
+
     #  ------------------- train_model ----------------------#
-    for epoch in range(1, num_epochs + 1):
+
+    for epoch in range(start_epoch, num_epochs + 1):
 
         loss_kl_z_batch  = []
         loss_kl_zr_batch = []
@@ -272,7 +293,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
             # ========= show info per bach ==================
             if torch.isnan(encoder_loss) or torch.isnan(decoder_loss):
-                torch.save(model.state_dict(), f'./{model_dir}/model_intro_vae_backup_NaN_{num_epochs}_epochs')
+                torch.save(model.state_dict(), f'./{model_dir}/intro_vae_backup_NAN_{epoch}_epochs')
                 raise SystemError("NaN values")
 
             info  = f" Epoch:[{epoch}/{num_epochs}], Batch:[{idx}/{len(img_input)}],"
@@ -318,8 +339,23 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
         loss_enc_values.append(enc_loss_total)
         loss_dec_values.append(dec_loss_total)
 
-    # Save Model
-    torch.save(model.state_dict(), f'./{model_dir}/model_intro_vae_completed_after_{num_epochs}_epochs')
+        # ========= save model checkpoint =============
+        if epoch % save_period == 0:
+            print("Saving Model Checkpoint")
+            torch.save({'epoch': epoch,
+                        'model_state_dict': model.state_dict(),
+                        'optimizer_enc_state_dict': optimizer_e.state_dict(),
+                        'optimizer_gen_state_dict': optimizer_d.state_dict(),
+                        'Kl_z_loss': loss_kl_z_values,
+                        'Kl_zr_loss': loss_kl_zr_values,
+                        'Kl_zp_loss': loss_kl_zp_values,
+                        'rec_loss': loss_rec_values,
+                        'enc_loss': loss_enc_values,
+                        'dec_loss': loss_dec_values
+                        }, f'./{model_dir}/checkpoint.pt')
+
+    # Save Model after training all the epochs
+    torch.save(model.state_dict(), f'./{model_dir}/model_intro_vae_completed_after_{num_epochs}_epochs.pt')
 
     # Plot Curves
     plot_curves(loss_kl_z_values, loss_kl_zr_values, loss_kl_zp_values,
