@@ -73,7 +73,22 @@ These scripts will load the data from Preprocessed_Data folder and train the mod
 
 **Evaluate the model**
 
+To evaluate the performance of the model ***after training***, please run the following commands. 
+
+- Car_Racing dataset
+
+  ```
+  python3 Car_Racing/Evaluate_Model.py
+
+  ```
+- Two Cubes Dataset
+   ```
+  python3 Two_Cubes/Evaluate_model_pytorch.py
+
+  ```
+
 ## Results
+
 Below is a sample of the results obtained with our model for the two datasets. Additionally,  we present a comparison against VAE  (a more in-depth analysis in our article)
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Results.png)
 
