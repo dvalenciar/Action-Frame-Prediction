@@ -10,7 +10,7 @@ Action-Conditioned Frame Prediction Without Discriminator
    </p>
    
    <p align="center">
-    Centre for Automation and Robotic Engineering Science, University of Auckland.
+    • Centre for Automation and Robotic Engineering Science, University of Auckland •
    </p>
 <h4 align="center">Official repository of the paper</h4>
 
@@ -27,12 +27,16 @@ Action-Conditioned Frame Prediction Without Discriminator
 | gym| 0.17.3|
 
 ## General Overview
-Our model consists of two networks: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network considerably more stable and easier to train compared to GAN or Hybrid-GAN architectures. (More info and details of the architecture in our paper)
+
+Our model consists of two networks: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network more stable. (More info and details of the architecture in our paper)
+
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/image_net.png)
 
 
 ## Sample Images from Datasets
+
 We have two datasets available in this repository. ***Car_Racing Dataset*** and ***Two_Cubes Dataset***. We have collected and standardized each of the images that compose these datasets. Each dataset includes input images, target images and actions. Examples of frames from the two used datasets are present below. 
+
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
 
 ## Repository Organization
@@ -46,7 +50,7 @@ We have two datasets available in this repository. ***Car_Racing Dataset*** and 
 
 ## How to run the code
 
-To train the model from scratch, please, first clone this repository in your local workstation.
+To train the model from scratch, please, first clone this repository in your local workstation; This will download the dataset and the necessary files.
 
 **Training Two Cubes Dataset**
 
