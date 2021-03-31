@@ -1,4 +1,3 @@
-# Action-Conditioned Frame Prediction
 
 <h1 align="center">
   <br>
