@@ -7,9 +7,13 @@ Action-Conditioned Frame Prediction Without Discriminator
  </h1>
  
    <p align="center">
-    David Valencia, Henry Williams,Bruce MacDonald •
+    • David Valencia, Henry Williams,Bruce MacDonald •
     Centre for Automation and Robotic Engineering Science, University of Auckland,
     Auckland, New Zealand
-    
-  </p>
+   </p>
+   
+   <p align="center">
+    Centre for Automation and Robotic Engineering Science, University of Auckland,
+    Auckland, New Zealand
+   </p>
 <h4 align="center">Official repository of the paper</h4>
