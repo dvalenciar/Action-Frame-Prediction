@@ -78,6 +78,6 @@ Below is a sample of the results obtained with our model for the two datasets. A
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Results.png)
 
 ## Citation
-
+If you use either the code or data in your paper, please kindly star this repo and cite our paper
 
 ######  The released codes are only allowed for non-commercial use.
