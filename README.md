@@ -30,6 +30,10 @@ Action-Conditioned Frame Prediction Without Discriminator
 ## General Overview
 Our design consists of two components: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network considerably more stable and easier to train compared to GAN or Hybrid-GAN architectures.
 
+## Sample Images from Datasets
+We have two datasets available in this repository. Car_Racing Data set and Two_Cubes Dataset. We have collected and standardized each of the images that compose our datasets. Each dataset includes input images, target images and actions. Examples of frames from the two used datasets are present below. 
+![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
+
 ## Repository Organization
 
 * **/Car_Racing**
@@ -38,11 +42,6 @@ Our design consists of two components: an encoder E and a Generator G. No extra 
 * **/Two_Cubes**
   - **/DataSet**           ----> directory containing the raw data divided into episodes
   - **/Preprocessed_Data** ----> directory containing the preprocessed data, sorted and normalized, divided into Input and Target images
-
-## Sample Images from Datasets
-![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
-
-
 
 ## How to run the code
 ###### Training Two Cubes Dataset
