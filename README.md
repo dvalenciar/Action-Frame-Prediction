@@ -56,8 +56,7 @@ To train the model with the Two_Cubes dataset, please run:
   ```
   python3 Two_Cubes/Frame_Prediction_Intro_VAE_V4_pytorch.py
   ```
-This script will load the data from Preprocessed_Data folder and train the model for 10K epochs. Also, _/Images_Result_ folder and _/Model_Saved_ will be created automatically to save some images samples and checkpoints respectively.
-
+  
 **Training Car Racing Dataset**
 
 To train the model with the Car_Racing dataset, please run:
@@ -66,6 +65,8 @@ To train the model with the Car_Racing dataset, please run:
   python3 Car_Racing/Frame_Prediction_Intro_VAE_Network.py
 
   ```
+
+These scripts will load the data from Preprocessed_Data folder and train the model for 10K epochs (Two_Cubes) and 5k epochs (Car_Racing). Also, _/Images_Result_ folder and _/Model_Saved_ folder will be created automatically to save some images samples and checkpoints respectively.
 
 ## Results
 
