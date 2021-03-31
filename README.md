@@ -32,3 +32,6 @@ Action-Conditioned Frame Prediction Without Discriminator
 
 * /Car_Racing
 * /Two_Cubes
+
+
+# The released codes are only allowed for non-commercial use.
