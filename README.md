@@ -92,7 +92,11 @@ To evaluate the performance of the model ***after training***, please run the fo
 Below is a sample of the results obtained with our model for the two datasets. Additionally,  we present a comparison against VAE  (a more in-depth analysis in our article)
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Results.png)
 
+
 ## Citation
 If you use either the code or data in your paper, please kindly star this repo and cite our paper
+
+## Contact
+Please feel free to contact us or open an issue if you have questions or need additional explanations.
 
 ######  The released codes are only allowed for non-commercial use.
