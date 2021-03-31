@@ -6,7 +6,7 @@ Action-Conditioned Frame Prediction Without Discriminator
  </h1>
  
    <p align="center">
-    • David Valencia, Henry Williams,Bruce MacDonald •
+    • David Valencia, Henry Williams, Bruce MacDonald •
    </p>
    
    <p align="center">
@@ -31,7 +31,10 @@ Action-Conditioned Frame Prediction Without Discriminator
 ## Repository Organization
 
 * /Car_Racing
+  - Preprocessed_Data
 * /Two_Cubes
+  - DataSet
+  - Preprocessed_Data
 
 ## Sample Images from Datasets
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
