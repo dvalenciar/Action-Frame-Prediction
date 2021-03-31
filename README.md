@@ -19,9 +19,9 @@ Action-Conditioned Frame Prediction Without Discriminator
 
 |Library         | Version |
 |----------------------|----|
-|`Python`|  `3.8`|
-|`torch`| = `1.7.1+cu101`|
-|`numpy`| = `1.17`|
+| Python | 3.8|
+|`torch` | 1.7.1+cu101|
+|`numpy`| 1.19`|
 |`PIL`| = `3.4.2`|
 |`tqdm`| >= `4.36.1`|
 |`matplotlib`|  >= `2.2.2`|
