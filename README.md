@@ -1,2 +1,2 @@
-# Action-Conditioned Frame Prediction Without Discriminator
+# Action-Conditioned Frame Prediction
 initial 
