@@ -71,7 +71,11 @@ To train the model with the Car_Racing dataset, please run:
 
 These scripts will load the data from Preprocessed_Data folder and train the model for 10K epochs (Two_Cubes) and 5k epochs (Car_Racing). Also, _/Images_Result_ folder and _/Model_Saved_ folder will be created automatically to save some images samples and checkpoints respectively.
 
+**Evaluate the model**
+
 ## Results
+Below is a sample of the results obtained with our model for the two datasets. Additionally,  we present a comparison against VAE  (a more in-depth analysis in our article)
+![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Results.png)
 
 ## Citation
 
