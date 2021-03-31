@@ -33,9 +33,9 @@ Action-Conditioned Frame Prediction Without Discriminator
 * **/Car_Racing**
   - **/Preprocessed_Data** ----> directory containing the collected data from Gym; data cropped sorted and normalized, separated into Input and Target images
 
-* /Two_Cubes
-  - /DataSet           ----> directory containing the raw data divided into episodes
-  - /Preprocessed_Data ----> directory containing the preprocessed data, sorted and normalized, divided into Input and Target images
+* **/Two_Cubes**
+  - **/DataSet**           ----> directory containing the raw data divided into episodes
+  - **/Preprocessed_Data** ----> directory containing the preprocessed data, sorted and normalized, divided into Input and Target images
 
 ## Sample Images from Datasets
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
