@@ -3,7 +3,20 @@
 """
 Author      : David Valencia
 Date        : March / 2021
-Description :
+
+Description: *** Frame Prediction Intro_VAE with Pytorch for Car Racing Data Set***
+                 Input Frame + Actions = Target Frame
+                 Data from Preprocessed_Data folder ready to train
+                 Input size = (64,64,3), Target size = (64,64,3), Input action size = continue vector size of 3
+                 Latent size = 32
+
+                 Data load on batches from Load_Batch_Data.py, mode=train load the train folder
+
+                 Images_Result folder and Model_Saved will be create automatically to save images samples and
+                 checkpoints respectively.
+
+                 if load_check = True, the last checkpoint is loaded to continue the training
+                                 process from the last epoch
 
 """
 import os
@@ -56,7 +69,7 @@ class Decoder_Net(nn.Module):
         )
 
     def decode_img(self, z, a):
-        concatenate = torch.cat((z, a), -1)  # add actions to z vector (None, 38)
+        concatenate = torch.cat((z, a), -1)  # add actions to z vector (None, 35)
 
         h_dense_1 = self.fc4(concatenate)
         h_dense_2 = self.fc5(h_dense_1)
@@ -111,7 +124,7 @@ class IntroVAE(nn.Module):
 
     def reparametrization(self, mu, log_var):
         std = torch.exp(0.5 * log_var)
-        eps = torch.rand_like(std)  # todo careful here maybe I need .to(device) or put in outside in helper
+        eps = torch.rand_like(std)
         z = mu + std * eps
         return z
 
@@ -175,7 +188,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
     start_epoch = 1
     beta = 1.0
     alpha = 0.25
-    marginal = 1.90
+    marginal = 2.0
 
     loss_kl_z_values  = []
     loss_kl_zr_values = []
@@ -192,8 +205,12 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
     # --------------build  and configure model --------------#
     model = IntroVAE(z_dim=latent_size).to(device)
+
     optimizer_e = torch.optim.Adam(model.encoder.parameters(), lr=0.00004)
     optimizer_d = torch.optim.Adam(model.decoder.parameters(), lr=0.00004)
+
+    e_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer_e, milestones=[3000], gamma=0.1)
+    d_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer_d, milestones=[3000], gamma=0.1)
 
     #-------------Load checkpoint----------------------------#
     load_check = False
@@ -229,7 +246,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
             img_in, img_t, act = img_in.to(device), img_t.to(device), act.to(device)
             zp = torch.randn(size=(img_in.size(0), latent_size)).to(device)  # noise batch
-            ap = torch.zeros(size=(img_in.size(0), 3)).to(device)  # action noise #todo carefully here try other option
+            ap = torch.zeros(size=(img_in.size(0), 3)).to(device)  # action noise
 
             # =========== Update E ================
             for param in model.encoder.parameters():
@@ -246,7 +263,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
             mu_r_ng, log_var_r_ng = model.encoder(xr.detach())
             mu_p_ng, log_var_p_ng = model.encoder(xp.detach())
 
-            l_ae = calc_reconstruction_loss(img_t, xr)  # reconstruction loss
+            l_ae = calc_reconstruction_loss(img_t, xr)  # reconstruction loss w.r.t target image
 
             l_reg_z = calc_kl_loss(mu, log_var)
             l_reg_zr_ng = calc_kl_loss(mu_r_ng, log_var_r_ng)
@@ -274,7 +291,7 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
             mu_r, log_var_r = model.encoder(xr)
             mu_p, log_var_p = model.encoder(xp)
 
-            l_ae = calc_reconstruction_loss(img_t, xr)  # reconstruction loss
+            l_ae = calc_reconstruction_loss(img_t, xr)  # reconstruction loss w.r.t target image
 
             l_reg_zr = calc_kl_loss(mu_r, log_var_r)
             l_reg_zp = calc_kl_loss(mu_p, log_var_p)
@@ -288,15 +305,15 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
 
             # ========= show info per bach ==================
             if torch.isnan(encoder_loss) or torch.isnan(decoder_loss):
-                torch.save(model.state_dict(), f'./{model_dir}/intro_vae_backup_NAN_{epoch}_epochs')
-                raise SystemError("NaN values")
+                torch.save(model.state_dict(), f'./{model_dir}/intro_vae_NAN_{epoch}_epochs')
+                raise SystemError("NaN values in loss")
 
             info  = f" Epoch:[{epoch}/{num_epochs}], Batch:[{idx}/{len(img_input)}],"
             info += f" Enc_Loss:{encoder_loss:4f}, Dec_Loss:{decoder_loss:4f}, Rec_Loss:{l_ae:4f},"
             info += f" KL_z:{l_reg_z:4f}, KL_zr:{l_reg_zr:4f}, KL_zp:{l_reg_zp:4f}"
             print(info)
 
-            # ========= save some images =============
+            # ========= save some images to inspection on training =============
             if epoch % save_period == 0 and idx == 7:
                 print("Saving Image Sample")
                 save_image(
@@ -332,6 +349,9 @@ def intro_vae_frame_prediction(device=torch.device("cuda:0"), batch_size=32,
         loss_rec_values.append(rec_loss_total)
         loss_enc_values.append(enc_loss_total)
         loss_dec_values.append(dec_loss_total)
+
+        #e_scheduler.step()  # to decrease LR after milestone
+        #d_scheduler.step()
 
         # ========= save model checkpoint =============
         if epoch % save_period == 0:
@@ -369,10 +389,10 @@ if __name__ == '__main__':
         print("Running on CPU")
 
     # ========== Global Parameters ==================== #
-    NUM_EPOCHS  = 3000
+    NUM_EPOCHS  = 5000
     BATCH_SIZE  = 32
     LATENT_SIZE = 32
-    SAVE_PERIOD = 100  # When to save a checkpoint
+    SAVE_PERIOD = 100  # When to save a checkpoint and sample images
 
     intro_vae_frame_prediction(device=device,
                                batch_size=BATCH_SIZE,

@@ -4,6 +4,17 @@
 Author      : David Valencia
 Date        : March / 2021
 Description :
+                 This code first collects the data from Gym environment then preprocessed it
+                 (crop, resize and normalize). Finally is shorted and saved in the correct
+                 order and folder (actions, inputs and targets)
+
+                 Train and Test data are collected separately
+                 Original Image (96x96x3) --> Crop(83x96x3) removing unuselees info
+                 Resize to (64X64X3) and normalizes with respect to 255
+                 Actions are saved as the original form, continuous values
+
+                 Preprocessed_Data folder will be created automatically; Here test and train folder will
+                 save the images and action in the correct order
 
 """
 
@@ -17,8 +28,8 @@ from matplotlib import image as mat_img
 
 
 def crop_normalize_observation(observation):
-    crop_frame = Image.fromarray(observation[:83, :, :], mode='RGB')
-    img_resize = crop_frame.resize((64, 64), Image.BILINEAR)
+    crop_frame = Image.fromarray(observation[:83, :, :], mode='RGB')  # removing bottom of the image
+    img_resize = crop_frame.resize((64, 64), Image.BILINEAR)  # resizing to (64X64X3)
     img = np.asarray(img_resize)
     img = img.astype('float32')  # convert from integers to floats 32
     img = img / 255.0  # normalize the image [0~1]
@@ -42,7 +53,7 @@ def generated_frames(n_episodes, n_steps):
     env = CarRacing()
     for episode in tqdm(range(n_episodes)):
         state = env.reset()
-        position = np.random.randint(len(env.track))  # to start the car' position in a different place every episode
+        position = np.random.randint(len(env.track))  # to start the car's position in a different place every episode
         env.car = Car(env.world, *env.track[position][1:4])  # Here * is passing values, no multiplication
         state = crop_normalize_observation(state)
 
@@ -93,13 +104,13 @@ def save_new_data(input_images, target_images, input_actions, typo):
 
 if __name__ == '__main__':
 
-    mode = 'None'
+    mode = 'Test'
 
     if mode == 'Train':
         print("Collecting training images, please wait...")
 
-        N_STEPS = 350  # 350
-        N_EPISODES = 100  # 100
+        N_STEPS = 350  # steps for each episode
+        N_EPISODES = 100
 
         data_input_frame, data_target_frame, data_input_action = generated_frames(n_episodes=N_EPISODES, n_steps=N_STEPS)
         save_new_data(data_input_frame, data_target_frame, data_input_action, "train")
