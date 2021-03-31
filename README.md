@@ -30,8 +30,8 @@ Action-Conditioned Frame Prediction Without Discriminator
 
 ## Repository Organization
 
-* /Car_Racing
-  - /Preprocessed_Data ----> directory containing the collected data from Gym; data cropped sorted and normalized, separated into Input and Target images
+* **/Car_Racing**
+  - **/Preprocessed_Data** ----> directory containing the collected data from Gym; data cropped sorted and normalized, separated into Input and Target images
 
 * /Two_Cubes
   - /DataSet           ----> directory containing the raw data divided into episodes
