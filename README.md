@@ -31,10 +31,11 @@ Action-Conditioned Frame Prediction Without Discriminator
 ## Repository Organization
 
 * /Car_Racing
-  - Preprocessed_Data
+  - /Preprocessed_Data
+
 * /Two_Cubes
-  - DataSet
-  - Preprocessed_Data
+  - /DataSet           ----> directory containing the raw data divided into episodes
+  - /Preprocessed_Data ----> directory containing the preprocessed data, sorted and normalized, divided into Input and Target images
 
 ## Sample Images from Datasets
 ![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
