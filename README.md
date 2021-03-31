@@ -1,2 +1,2 @@
-# prediction_introvae_both
-initial test in remote PC Auckland for two dataset
+# Action-Conditioned Frame Prediction Without Discriminator
+initial 
