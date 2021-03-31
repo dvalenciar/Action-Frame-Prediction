@@ -7,7 +7,7 @@ Action-Conditioned Frame Prediction Without Discriminator
  </h1>
  
    <p align="center">
-    <a href= David Valencia</a> •
+    David Valencia
     <a href="https://avivt.github.io/avivt/">Aviv Tamar</a>
 
   </p>
