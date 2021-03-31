@@ -1,4 +1,0 @@
-This data set is smaller than the previos implementations. I just use around 105 episodes
-This in order to speed up the training process for initial testing
-
-

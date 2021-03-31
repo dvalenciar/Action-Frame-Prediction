@@ -8,22 +8,25 @@ Description :
               ***READY FOR IMAGES REGENERATION*** in the correct folder as input_image, target_image and action
 
               ---> Also de normalization is respect to 255
-              ---> No NPZ files are generated here <-----
+              ---> No NPZ files for images are generated here
               ---> Data set contains around 100 episodes, manually checked
+              ---> From Image Size to (192,256,3)
+              ---> Action is one-hot encoded here
 
               Here created the function that will help in the training process
               Load and Preprocess data (image and actions) Using PIL
 
               This library helps to preprocess the data(resize, normalization, sort, etc)
-              A list with the images/actions in the correct order and format is created and write a NPZ file
-              Write the data in a NPZ files helps me free up memory and keep the data in correct order.
+              A list with the images/actions (inputs) and images(target) in the correct order and format
+              is created and write in folders.
+
+              Result = Preprocessed_Data folder with train, test folder, each with input, target and actions ready
 """
 
 import os
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
-
 from matplotlib import image as mat_img
 
 
@@ -58,8 +61,8 @@ def encoding_action(action_vector):
 
 
 def load_data_input_target_pil(data_directory):
-    resize_height = 192  # 96
-    resize_width  = 256  # 128
+    resize_height = 192
+    resize_width  = 256
 
     episode_directories = sorted([data_directory + p for p in os.listdir(data_directory)])
     number_episodes = len(episode_directories)
@@ -72,7 +75,7 @@ def load_data_input_target_pil(data_directory):
 
         for f in range(len(frames)):
             img = Image.open(episode + "/" + frames[f])
-            img = img.resize((resize_width, resize_height))  # resize the images (640x480)==>(250x188)
+            img = img.resize((resize_width, resize_height))  # resize the images (640x480)==>(192x256)
             # img.thumbnail((256, 256))
             img = np.asarray(img)  # when using PIL convert to array is necessary to work with images
             img = img.astype('float32')  # convert from integers to floats 32
@@ -89,6 +92,7 @@ def load_data_input_target_pil(data_directory):
 
 
 def save_new_data(input_images, target_images, input_actions, typo):
+
     print(f"Writing the {typo} images, please wait....")
     print("\n")
 
