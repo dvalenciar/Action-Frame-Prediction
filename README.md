@@ -14,3 +14,15 @@ Action-Conditioned Frame Prediction Without Discriminator
     Auckland, New Zealand
    </p>
 <h4 align="center">Official repository of the paper</h4>
+
+## Prerequisites
+
+|Library         | Version |
+|----------------------|----|
+|`Python`|  `3.8`|
+|`torch`| = `1.7.1+cu101`|
+|`numpy`| = `1.17`|
+|`PIL`| = `3.4.2`|
+|`tqdm`| >= `4.36.1`|
+|`matplotlib`|  >= `2.2.2`|
+|`gym`| >= `1.3.1`|
