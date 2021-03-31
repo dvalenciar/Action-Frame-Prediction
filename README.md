@@ -10,8 +10,7 @@ Action-Conditioned Frame Prediction Without Discriminator
    </p>
    
    <p align="center">
-    Centre for Automation and Robotic Engineering Science, University of Auckland,
-    Auckland, New Zealand
+    Centre for Automation and Robotic Engineering Science, University of Auckland.
    </p>
 <h4 align="center">Official repository of the paper</h4>
 
