@@ -19,7 +19,7 @@ import os
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-from Intro_VAE_V4_pytorch import IntroVAE
+from Frame_Prediction_Intro_VAE_V4_pytorch import IntroVAE
 from Load_Batch_Data_Pytorch import load_data_generator
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import mean_squared_error as mse
