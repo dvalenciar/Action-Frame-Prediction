@@ -28,7 +28,7 @@ Action-Conditioned Frame Prediction Without Discriminator
 | gym| 0.17.3|
 
 ## General Overview
-Our design consists of two components: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network considerably more stable and easier to train compared to GAN or Hybrid-GAN architectures.
+Our model consists of two networks: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network considerably more stable and easier to train compared to GAN or Hybrid-GAN architectures. (More info and details in our paper)
 
 ## Sample Images from Datasets
 We have two datasets available in this repository. Car_Racing Data set and Two_Cubes Dataset. We have collected and standardized each of the images that compose our datasets. Each dataset includes input images, target images and actions. Examples of frames from the two used datasets are present below. 
