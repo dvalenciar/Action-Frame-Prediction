@@ -38,6 +38,8 @@ Action-Conditioned Frame Prediction Without Discriminator
 
 ## How to run the code
 ###### Training Two Cubes Dataset
+###### Training Car Racing Dataset
+
 
 ## Results
 
