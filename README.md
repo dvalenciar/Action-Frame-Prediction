@@ -46,6 +46,7 @@ We have two datasets available in this repository. ***Car_Racing Dataset*** and 
   - **/Preprocessed_Data** ----> directory containing the preprocessed data, sorted and normalized, divided into Input and Target images
 
 ## How to run the code
+
 To train the model from scratch, please, first clone this repository in your local workstation.
 
 **Training Two Cubes Dataset**
@@ -57,8 +58,14 @@ To train the model with the Two_Cubes dataset, please run:
   ```
 This script will load the data from Preprocessed_Data folder and train the model for 10K epochs. Also, _/Images_Result_ folder and _/Model_Saved_ will be created automatically to save some images samples and checkpoints respectively.
 
-###### Training Car Racing Dataset
+**Training Car Racing Dataset**
 
+To train the model with the Car_Racing dataset, please run:
+
+  ```
+  python3 Car_Racing/Frame_Prediction_Intro_VAE_Network.py
+
+  ```
 
 ## Results
 
