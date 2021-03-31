@@ -34,6 +34,8 @@ Action-Conditioned Frame Prediction Without Discriminator
 * /Two_Cubes
 
 ## Sample Images from Datasets
+![](https://github.com/dvalenciar/Action-Conditioned-Frame-Prediction-Without-Discriminator/blob/main/Read_Img_Files/Example_of_Data.png)
+
 
 
 ## How to run the code
