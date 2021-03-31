@@ -27,11 +27,13 @@ Action-Conditioned Frame Prediction Without Discriminator
 | matplotlib|  3.3.3|
 | gym| 0.17.3|
 
+## General Overview
+Our design consists of two components: an encoder E and a Generator G. No extra discriminator is needed in our proposal since the encoder here also plays the role of a discriminator. Not having an extra discriminator makes our network considerably more stable and easier to train compared to GAN or Hybrid-GAN architectures.
 
 ## Repository Organization
 
 * **/Car_Racing**
-  - **/Preprocessed_Data** ----> directory containing the collected data from Gym; data cropped sorted and normalized, separated into Input and Target images
+  - **/Preprocessed_Data** ----> directory containing the collected data from Gym; data cropped, sorted and normalized, separated into Input and Target images
 
 * **/Two_Cubes**
   - **/DataSet**           ----> directory containing the raw data divided into episodes
