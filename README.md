@@ -6,7 +6,7 @@ Action-Conditioned Frame Prediction Without Discriminator
  </h1>
  
    <p align="center">
-    • David Valencia, Henry Williams, Bruce MacDonald •
+    • David Valencia, Henry Williams, Bruce MacDonald, Ting Qiao •
    </p>
    
    <p align="center">
