@@ -96,6 +96,20 @@ Below is a sample of the results obtained with our model for the two datasets. A
 ## Citation
 If you use either the code or data in your paper, please kindly star this repo and cite our paper
 
+Cite this paper as:
+Valencia D., Williams H., MacDonald B., Qiao T. (2022) Action-Conditioned Frame Prediction Without Discriminator. In: Nicosia G. et al. (eds) Machine Learning, Optimization, and Data Science. LOD 2021. Lecture Notes in Computer Science, vol 13163. Springer, Cham. https://doi.org/10.1007/978-3-030-95467-3_24
+
+@inproceedings{valencia2021action,
+  title={Action-Conditioned Frame Prediction Without Discriminator},
+  author={Valencia, David and Williams, Henry and MacDonald, Bruce and Qiao, Ting},
+  booktitle={International Conference on Machine Learning, Optimization, and Data Science},
+  pages={324--337},
+  year={2021},
+  organization={Springer}
+}
+
+
+
 ## Contact
 Please feel free to contact us or open an issue if you have questions or need additional explanations.
 
